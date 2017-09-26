@@ -1,0 +1,21 @@
+{
+  "name": "node-qr-code-reader",
+  "version": "1.0.0",
+  "description": "QrCode Reader for Node.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gravmatt/node-qr-code-reader.git"
+  },
+  "author": "Rene Tanczos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gravmatt/node-qr-code-reader.git/issues"
+  },
+  "homepage": "https://github.com/gravmatt/node-qr-code-reader.git#readme",
+  "dependencies": {
+  }
+}
