@@ -1,5 +1,5 @@
 
-# NodeJs Qr Code Reader
+# Node Qr Code Reader
 
 The core of this project is mydansun/QrCode-Reader-Node.js https://github.com/mydansun/QrCode-Reader-Node.js
 
@@ -24,7 +24,7 @@ Before you do this `npm install canvas`, download the dependencies from the link
 
 the Canvas module has some native dependencies that need to be compiled.
 
-[>> So visit first this link and install the depencecies for your OS. <<](https://www.npmjs.com/package/canvas#installation)
+[>> So visit first this link and install the depencecies for your OS <<](https://www.npmjs.com/package/canvas#installation)
 
 ### Errors & Fixes
 
