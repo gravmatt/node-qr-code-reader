@@ -30,19 +30,43 @@ function random(len) {
 }
 
 function getHttpModule(url) {
-    if(url.startsWith('https')) return https;
-    else return http;
+    return url.startsWith('https') ? https : http;
+}
+
+function getRandomFile() {
+    const downloads = path.join(__dirname, 'downloads');
+    if(!fs.existsSync(downloads)) {
+        fs.mkdirSync(downloads);
+    }
+    return path.join(downloads, random(32));
 }
 
 function decode(url) {
     return new Promise((resolve, reject) => {
+        if(fs.existsSync(url)) {
+            qrcode.decode(url, (success, result) => {
+                if(success)
+                    resolve(result);
+                else
+                    reject('Nothing found');
+            });
+            return;
+        }
+
         getHttpModule(url).get(url, (res) => {
-            res.pipe(fs.createWriteStream('tmp_image_file'))
+            if(res.statusCode != 200)
+                return reject('Image not found');
+
+            const imageFile = getRandomFile();
+
+            res.pipe(fs.createWriteStream(imageFile))
             .on('finish', () => {
-                qrcode.decode('tmp_image_file', (success, result) => {
-                    if(success) resolve(result);
-                    else reject('Nothing found');
-                    fs.unlink('tmp_image_file');
+                qrcode.decode(imageFile, (success, result) => {
+                    if(success)
+                        resolve(result);
+                    else
+                        reject('Nothing found');
+                    fs.unlink(imageFile);
                 });
             });
         });

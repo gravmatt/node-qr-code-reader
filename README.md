@@ -9,12 +9,17 @@ The core of this project is mydansun/QrCode-Reader-Node.js https://github.com/my
 const qrReader = require('./qrCodeReader');
 
 qrReader.decode('https://<image_from_the_web')
-	.then((result) => {
-		console.log(result);
-	})
-	.catch((err) => {
-		console.log(err);
-	});
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+// OR by file path
+
+qrReader.decode('~/images/qrcode.png')
+    .then(console.log);
 ```
 
 
