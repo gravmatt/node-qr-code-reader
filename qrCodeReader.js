@@ -29,10 +29,6 @@ function random(len) {
     return rdmString.substr(0, len);
 }
 
-function getHttpModule(url) {
-    return url.startsWith('https') ? https : http;
-}
-
 function getRandomFile() {
     const downloads = path.join(__dirname, 'downloads');
     if(!fs.existsSync(downloads)) {
@@ -53,7 +49,8 @@ function decode(url) {
             return;
         }
 
-        getHttpModule(url).get(url, (res) => {
+        (url.startsWith('https') ? https : http)
+        .get(url, (res) => {
             if(res.statusCode != 200)
                 return reject('Image not found');
 
