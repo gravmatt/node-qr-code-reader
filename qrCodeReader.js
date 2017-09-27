@@ -49,10 +49,13 @@ function decode(url) {
             return;
         }
 
+        if(!url.startsWith('https') || !url.startsWith('http'))
+            return reject('Image path invalid');
+
         (url.startsWith('https') ? https : http)
         .get(url, (res) => {
             if(res.statusCode != 200)
-                return reject('Image not found');
+                return reject('Could not fetch image file from the web');
 
             const imageFile = getRandomFile();
 
@@ -62,7 +65,7 @@ function decode(url) {
                     if(success)
                         resolve(result);
                     else
-                        reject('Nothing found');
+                        reject('Nothing found in the image');
                     fs.unlink(imageFile);
                 });
             });
